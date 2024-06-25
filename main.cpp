@@ -48,12 +48,15 @@ void MainThread() {
 	while (FindWindowA(skCrypt("TankWindowClass"), NULL))
 	{
 		auto viewMatrixVal = SDK->RPM<uint64_t>(SDK->dwGameBase + offset::Address_viewmatrix_base) ^ offset::offset_viewmatrix_xor_key;
-		viewMatrixVal = SDK->RPM<uint64_t>(viewMatrixVal + 0x5C0);
-		viewMatrixVal = SDK->RPM<uint64_t>(viewMatrixVal + 0x48);
-		viewMatrix_xor_ptr = viewMatrixVal + 0x130;
+		viewMatrixVal = SDK->RPM<uint64_t>(viewMatrixVal + 0x20);
+		viewMatrixVal = SDK->RPM<uint64_t>(viewMatrixVal + 0x50);
+		viewMatrix_xor_ptr = viewMatrixVal + 0x140;
 		auto view = SDK->RPM<uint64_t>(SDK->dwGameBase + offset::Address_viewmatrix_base_test) + offset::offset_viewmatrix_ptr;
 		viewMatrixPtr = view;
+
+		Sleep(100);
 	}
+
 }
 /*
 	Video on what ownerid and secret are https://youtu.be/uJ0Umy_C6Fg
